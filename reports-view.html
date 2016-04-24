@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app="patient">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Patient</title>
+    <script src='js/jquery-1.7.2.min.js'></script>
+    <script src='js/rate.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+<script type="text/javascript">
+
+    $.ajax({
+        type: 'GET',
+        url: 'https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/DiagnosticReport?patient=Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB',
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            for(var i=0; i < data.entry.length; i++) {
+
+                var rating = '<fieldset class="rating">'+
+                        '<input type="radio" checked id="star5'+i+'" name="rating" value="5" /><label for="star5'+i+'" title="Rocks!">5 stars</label>'+
+                        '<input type="radio" id="star4'+i+'" name="rating" value="4" /><label for="star4'+i+'" title="Pretty good">4 stars</label>'+
+                        '<input type="radio" id="star3'+i+'" name="rating" value="3" /><label for="star3'+i+'" title="Meh">3 stars</label>'+
+                        '<input type="radio" id="star2'+i+'" name="rating" value="2" /><label for="star2'+i+'" title="Kind a bad">2 stars</label>'+
+                        '<input type="radio" id="star1'+i+'" name="rating" value="1" /><label for="star1'+i+'" title="Sucks big time">1 stars</label>'+
+                        '</fieldset>';
+
+                var template = '<tr><td class="genderColumn male">'+ data.entry[i].resource.code.text +'</td><td class="nameColumn">'+data.entry[i].resource.subject.display+'</td>' +
+                        '<td class="familyColumn">'+rating+'</td><td class="dateColumn">'+data.entry[i].resource.effectiveDateTime+'</td>' +
+                        '<td class="bornColumn"><a href="report-view.html?'+ data.entry[i].resource.code.text +'">View</a></td></tr>';
+                $("#reportsTable tbody").append(template);
+            }
+        }
+    });
+</script>
+
+<div class="container">
+    <center class="fullWidth">
+        <br/>
+        <div id="selectPatientHeader" class="row">
+            <div class="selectP">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                Patient Reports</div>
+        </div>
+        <br/>
+        <div class="box row">
+            <form class="form-inline">
+                <div class="form-group">
+                    <label class="sr-only" for="exampleInputAmount">Available Reports</label>
+                    <div class="input-group">
+                        <div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+                        <input type="text" class="form-control" id="exampleInputAmount" placeholder="Search Reports">
+                    </div>
+                </div>
+            </form>
+            <br/>
+            <div id ="resultsId" class="result" ng-controller="MainController">
+                <table class="" id="reportsTable">
+                    <thead>
+                    <tr>
+                        <th class="genderColumnHeader">Report Name</th>
+                        <th class="nameColumnHeader">Patient</th>
+                        <th class="familyColumnHeader">Rating</th>
+                        <th class="dateColumnHeader">Date</th>
+                        <th class="bornColumnHeader">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody class="fullwidth">
+
+                    </tbody>
+                </table>
+
+                <br/><!-- <span class="resultInfo">showing 0 patients of 260</span> -->
+                <br/><br/>
+                <div id="paginationPanel">
+                    <span class="prevNnext btn btn-default">Prev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="pagesLabel">Pages: &nbsp;</span>
+                    <span class="pageNumber currentPage"> 1&nbsp;&nbsp;</span>
+                    <span class="pageNumber"> 2&nbsp;&nbsp;</span>
+                    <span class="pageNumber"> 3&nbsp;&nbsp;</span>
+                    <span> ...</span>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <span class="prevNnext btn btn-primary">Next</span>
+                </div><br/>
+            </div>
+    </center>
+</div>
+<div id="site-bottom">
+
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+</body>
+</html>
