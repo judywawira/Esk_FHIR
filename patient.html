@@ -7,7 +7,7 @@
 	<title>Search Patient</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css.css">
-	<link rel="stylesheet" href="assets/ionicons.min.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body>
 <div class="container">
@@ -30,7 +30,7 @@
 		</div>
 		</form>
 		<br/>
-		<div id ="resultsId" class="result" ng-controller="resultsCtrl">
+		<div id ="resultsId" class="result" ng-controller="MainController">
 			<table class="">
 				<thead>
 				<tr>
@@ -44,54 +44,46 @@
 				<tbody class="fullwidth">
 					<tr>
 					    <td class="checkColumn"><input type="checkbox"></td>
-						<td class="genderColumn male">M</td>
-						<td class="nameColumn">John Njorku</td>
-						<td class="familyColumn">Ndibom</td>
-						<td class="bornColumn">31 Feb 2014</td>
+						<td class="genderColumn male">{{patient.gender}}</td>
+						<td class="nameColumn">{{patient.name}}</td>
+						<td class="familyColumn">{{patient.family}}</td>
+						<td class="bornColumn">{{patient.born | date}}</td>
 					</tr>
-					<tr>
-					    <td class="checkColumn"><input type="checkbox"></td>
-						<td class="genderColumn female">F</td>
-						<td class="nameColumn">John</td>
-						<td class="familyColumn">Family</td>
-						<td class="bornColumn">etc</td>
-					</tr>
-					<tr>
-					    <td class="checkColumn"><input type="checkbox"></td>
-						<td class="genderColumn female">F</td>
-						<td class="nameColumn">John</td>
-						<td class="familyColumn">Family</td>
-						<td class="bornColumn">etc</td>
-					</tr>
-				
-					
 				</tbody>
 			</table>
 		
-		<br/><span class="resultInfo">showing 25 patients of 260</span>
+		<br/><!-- <span class="resultInfo">showing 0 patients of 260</span> -->
 		<br/><br/>
 		<div id="paginationPanel">
-		<span class="prevNnext">Prev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="prevNnext btn btn-default">Prev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<span class="pagesLabel">Pages: &nbsp;</span>
-		<span class="pageNumber"> 1&nbsp;&nbsp;</span>
-		<span class="pageNumber currentPage"> 2&nbsp;&nbsp;</span>
+		<span class="pageNumber currentPage"> 1&nbsp;&nbsp;</span>
+		<span class="pageNumber"> 2&nbsp;&nbsp;</span>
 		<span class="pageNumber"> 3&nbsp;&nbsp;</span>
 		<span> ...</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="prevNnext">Next</span>
+		<span class="prevNnext btn btn-primary">Next</span>
 	</div><br/>
 	</div>
 	</center>
 </div>
+<div id="site-bottom">
 
+</div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="assets/ionic.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 <!-- Bootstrap -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <script src="js/angular-ui-router.min.js"></script>
 <script src="js/angular.min.js"></script>
-<script src="js/app1.js"></script>
+<script>
+	var app = angular.module('patient', []);
+
+	app.controller('MainController', ['$scope', function($scope) {
+
+	}]);
+
+</script>
 </body>
 </html>
