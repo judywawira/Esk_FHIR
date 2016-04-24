@@ -19,3 +19,11 @@ function getParameterByName(name, url) {
     if (!results[2]) return '';
     return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+function addComment() {
+    //window.location.href = "https://open-ic.epic.com/argonaut/oauth2/authorize?response_type=code&client_id=e1920551-0f59-464d-a707-7daa5a112be5&redirect_uri=http://localhost/hackthon-app"
+    var comment = $('#new-review').val();
+    $('#comments').append('<p>' + comment + '</p><br>');
+    var comment = $('#new-review').val("");
+    return true;
+};
