@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="assets/css.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
-<body>
+<body ng-controller="MainController">
 <div class="container">
 <center class="fullWidth">
 <br/>
@@ -27,10 +27,11 @@
 		    	<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
 		      	<input type="text" class="form-control" id="exampleInputAmount" placeholder="Search Patient">
 		    </div>
+		    <span class="btn btn-default" ng-model="names" ng-click="patientSearch()">Search</span>
 		</div>
 		</form>
 		<br/>
-		<div id ="resultsId" class="result" ng-controller="MainController">
+		<div id ="resultsId" class="result">
 			<table class="">
 				<thead>
 				<tr>
@@ -80,8 +81,27 @@
 <script>
 	var app = angular.module('patient', []);
 
-	app.controller('MainController', ['$scope', function($scope) {
+	
 
+	app.controller('MainController', ['$scope', '$http', function($scope, $http) {
+		$scope.patient = {
+			gender: "M",
+			name: "james",
+			family: "peterson",
+			born: 1991
+		};
+
+		$scope.searchPatient = function() {
+			/*var full = names.split();
+
+			var given = full[0];
+			var family = full[1];
+
+			var queryString = " https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?" + "given=" + given + "&family=" + family;
+
+			console.log(queryString); */
+			console.log("Hello World");
+		};
 	}]);
 
 </script>
