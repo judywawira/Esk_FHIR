@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html ng-app="patient">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Search Patient</title>
+    <script src='js/jquery-1.7.2.min.js'></script>
+    <script src='js/rate.js'></script>
+    <script src='js/ratingfield.js'></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css.css">
+    <link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body>
+
+<script type="text/javascript">
+    $.ajax({
+        type: 'GET',
+        url: 'https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/DiagnosticReport?patient=Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB',
+        dataType: 'json',
+        success: function(data){
+            console.log(data);
+            for(var i=0; i < data.entry.length; i++) {
+                if(i == 1) {
+                    $('#status').val(data.entry[i].resource.status);
+                    $('#issuedDate').val(data.entry[i].resource.issued);
+                    $('#code').val(data.entry[i].resource.code.text);
+                    $('#patient').val(data.entry[i].resource.subject.display);
+                    $('#performer').val(data.entry[i].resource.performer.display);
+                    for(var k=0; k < data.entry[i].resource.result.length; k++) {
+                        var entry = '<tr><td>'+ data.entry[i].resource.result[k].display +'</td><td>'+data.entry[i].resource.result[k].reference+'</td></tr>'
+                        $("#resultsTable tbody").append(entry);
+                    }
+                }
+
+            }
+        }
+    });
+</script>
+
+<div class="container">
+    <center class="fullWidth">
+        <br/>
+        <div id="selectPatientHeader" class="row">
+            <div class="selectP">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                Diagnostic Report</div>
+        </div>
+        <br/>
+        <div class="box row">
+            <div class="form-group">
+                <label for="email">Status</label>
+                <input type="status" class="form-control" id="status" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Issued Date</label>
+                <input type="issuedDate" class="form-control" id="issuedDate" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Code</label>
+                <input type="code" class="form-control" id="code" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Patient</label>
+                <input type="patient" class="form-control" id="patient" disabled>
+            </div>
+            <div class="form-group">
+                <label for="email">Performer</label>
+                <input type="performer" class="form-control" id="performer" disabled>
+            </div>
+
+            <div id ="resultsId">
+                <table class="" id="resultsTable">
+                    <thead>
+                    <tr>
+                        <th class="genderColumnHeader">Display</th>
+                        <th class="nameColumnHeader">Reference</th>
+                    </tr>
+                    </thead>
+                    <tbody class="fullwidth">
+
+                    </tbody>
+                </table>
+             </div>
+
+            <div class="col-md-6">
+                <div class="well well-sm">
+                    <div class="text-right">
+                        <a class="btn btn-success btn-green" href="#reviews-anchor" id="open-review-box" style="display: none;">Leave a Review</a>
+                    </div>
+                    <div class="row" id="post-review-box">
+                        <div class="col-md-12">
+                            <form accept-charset="UTF-8" action="" method="post">
+                                <input id="ratings-hidden" name="rating" type="hidden">
+                                <textarea class="form-control animated" cols="50" id="new-review" name="comment" placeholder="Enter your review here..." rows="5" style="overflow: hidden; word-wrap: break-word; resize: horizontal; height: 54px;"></textarea>
+
+                                <div class="text-right">
+                                    <div class="stars starrr" data-rating="0"><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span><span class="glyphicon .glyphicon-star-empty glyphicon-star-empty"></span></div>
+                                    <a class="btn btn-danger btn-sm" href="#" id="close-review-box" style="margin-right: 10px;">
+                                        <span class="glyphicon glyphicon-remove"></span>Cancel</a>
+                                    <button class="btn btn-success btn-lg" type="submit">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </center>
+</div>
+<div id="site-bottom">
+
+</div>
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/angular.min.js"></script>
+</body>
+</html>

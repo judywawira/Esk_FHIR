@@ -71,7 +71,7 @@
 
                 var template = '<tr><td class="genderColumn male">'+ data.entry[i].resource.code.text +'</td><td class="nameColumn">'+data.entry[i].resource.subject.display+'</td>' +
                         '<td class="familyColumn">'+rating+'</td><td class="dateColumn">'+data.entry[i].resource.effectiveDateTime+'</td>' +
-                        '<td class="bornColumn"><a href="report-view.html?'+ data.entry[i].resource.code.text +'">View</a></td></tr>';
+                        '<td class="bornColumn"><a href="report-view.html?url='+ data.entry[i].resource.code.text +'">View</a></td></tr>';
                 $("#reportsTable tbody").append(template);
             }
         }
