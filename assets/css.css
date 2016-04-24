@@ -1,0 +1,130 @@
+.fullWidth{
+
+	width: 100%;
+}
+#resultsId{
+
+	width: 800px;
+}
+#resultsId table{
+
+	width: 100%;
+	border-collapse: collapse;
+}
+
+#resultsId table thead th{
+
+	text-align: center;
+	padding: 0 0 6px 0;
+}
+
+#resultsId table td{
+
+	border: 1px solid rgba(0,0,0,.2);
+	height: 40px;
+}
+
+#resultsId table tr:hover{
+
+ background-color: rgba(0,0,0,.04);
+}
+#resultsId table thead tr:hover{
+
+ background-color: transparent;
+}
+
+#resultsId table .checkColumnHeader{
+
+	width: 30px;
+}
+
+#resultsId table .genderColumnHeader{
+
+	width: 30px;
+}
+
+#resultsId table .nameColumnHeader{
+
+	width: 0px;
+}
+#resultsId table .familyColumnHeader{
+
+	width: 70px;
+}
+
+#resultsId table .bornColumnHeader{
+
+	width: 150px;
+}
+#resultsId table .bornColumn{
+
+	width: 275px;
+	padding: 0 10px;
+}
+#resultsId table .familyColumn{
+
+	width: 275px;
+	padding: 0 10px;
+}
+#resultsId table .nameColumn{
+
+	width: 275px;
+	padding: 0 10px;
+}
+#resultsId table .genderColumn{
+
+	width: 70px;
+	text-align: center;
+	font-weight: bold;
+}
+#resultsId table .checkColumn{
+
+	width: 30px;
+	text-align: center;
+}
+#resultsId table .male{
+
+	color: #2196f3;
+}
+#resultsId table .female{
+
+	color: #ff4081;
+}
+
+#selectPatientHeader .selectP{
+  
+  font-size: 30px;
+  color: #26773B;
+}
+
+#paginationPanel .prevNnext{
+
+	font-size: 20px;
+	
+}
+
+#paginationPanel .pagesLabel{
+
+	font-weight: bold;
+	color: rgba(0,0,0,.6);
+	
+}
+
+#paginationPanel .pageNumber{
+
+    font-weight: bold;
+    font-size: 16px;
+    color: rgba(0,0,0,.68);
+}
+
+#paginationPanel .currentPage{
+
+    font-size: 18px;
+    color: #1e88e5;
+}
+
+.resultInfo{
+
+	font-size: 14px;
+	color: rgba(0,0,0,.5);
+}

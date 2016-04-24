@@ -44,8 +44,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="patient in patients">
-            <td>{{patient.name}}</td>
+        <tr>
+            <td>{{patient.name[0].family.value}}</td>
             <td>{{patient.birthDate | date}}</td>
             <td>{{patient.identifier}}</td>
             <td>{{patient.gender}}</td>
@@ -58,31 +58,25 @@
 <script>
    var app = angular.module('Esk_FHIR', []);
 
-   app.controller('MainController', ['$scope', function($scope) {
+   app.factory('patientGetter', ['$http', function($http) {
+        return $http.get('https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient/Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB')
+                    .success(function(data) {
+                        return data;
+                    })
+                    .error(function(err) {
+                        return err;
+                    });
+      
+    }]);
+
+   app.controller('MainController', ['$scope', 'patientGetter', function($scope, patientGetter) {
+
+        patientGetter.success(function(data) {
+            $scope.patient = data;
+            console.log(data);
+        });
         // this is just for testing purposes, will replace it with a rest call
-        $scope.patients = [
-            {
-                name: "John Doe",
-                birthDate: new Date('1990', '04', '03'),
-                identifier: 1,
-                gender: 'Male',
-                Actions: "none"
-            },
-            {
-                name: "Jane Doe",
-                birthDate: new Date('1992', '03', '08'),
-                identifier: 2,
-                gender: 'Female',
-                Actions: "none"
-            }, 
-            {
-                name: "Peter Doe",
-                birthDate: new Date('2000', '03', '08'),
-                identifier: 3,
-                gender: 'Male',
-                Actions: "none"
-            }
-        ];
+        
    }]);
 </script>
 </body>
