@@ -14,6 +14,7 @@
     <script src='js/jsonld.js'></script>
     <script src='js/flot/jquery.flot.min.js'></script>
     <script src='js/flot/jquery.flot.resize.min.js'></script>
+    <script src='js/angular.min.js'></script>
     <!--[if lte IE 8]><script src="./js/flot/excanvas.min.js"></script><![endif]-->
     <script src='js/underscore.min.js'></script>
     <script src='js/json2.js'></script>
@@ -23,7 +24,7 @@
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.css"/>
     <script type="text/javascript" src="https://cdn.datatables.net/t/dt/dt-1.10.11/datatables.min.js"></script>
 </head>
-<body>
+<body ng-app="Esk_FHIR">
 <script type="application/javascript">
     $(document).ready(function() {
         $('#table').DataTable( {
@@ -31,7 +32,7 @@
         } );
     } );
 </script>
-<section class="container">
+<section class="container" ng-controller="MainController">
     <table id="table" class="display">
         <thead>
         <tr>
@@ -43,15 +44,46 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>Row 1 Data 1</td>
-            <td>Row 1 Data 2</td>
-            <td>etc</td>
-            <td>etc</td>
-            <td>etc</td>
+        <tr ng-repeat="patient in patients">
+            <td>{{patient.name}}</td>
+            <td>{{patient.birthDate | date}}</td>
+            <td>{{patient.identifier}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.actions}}</td>
         </tr>
         </tbody>
     </table>
 </section>
+
+<script>
+   var app = angular.module('Esk_FHIR', []);
+
+   app.controller('MainController', ['$scope', function($scope) {
+        // this is just for testing purposes, will replace it with a rest call
+        $scope.patients = [
+            {
+                name: "John Doe",
+                birthDate: new Date('1990', '04', '03'),
+                identifier: 1,
+                gender: 'Male',
+                Actions: "none"
+            },
+            {
+                name: "Jane Doe",
+                birthDate: new Date('1992', '03', '08'),
+                identifier: 2,
+                gender: 'Female',
+                Actions: "none"
+            }, 
+            {
+                name: "Peter Doe",
+                birthDate: new Date('2000', '03', '08'),
+                identifier: 3,
+                gender: 'Male',
+                Actions: "none"
+            }
+        ];
+   }]);
+</script>
 </body>
 </html>
