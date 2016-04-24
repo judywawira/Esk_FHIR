@@ -46,7 +46,7 @@
 					<tr>
 					    <td class="checkColumn"><input type="checkbox"></td>
 						<td class="genderColumn male">{{patient.gender}}</td>
-						<td class="nameColumn">{{patient.name}}</td>
+						<td class="nameColumn">{{patient.given}}</td>
 						<td class="familyColumn">{{patient.family}}</td>
 						<td class="bornColumn">{{patient.birthDate | date}}</td>
 					</tr>
@@ -63,7 +63,7 @@
 		<span class="pageNumber"> 3&nbsp;&nbsp;</span>
 		<span> ...</span>
 		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<span class="prevNnext btn btn-primary">Next</span>
+		<a ng-href="reports-view.html?patientId={{patient.id}}" class="prevNnext btn btn-primary">Next</a>
 	</div><br/>
 	</div>
 	</center>
@@ -81,9 +81,10 @@
 <script>
 	var app = angular.module('patient', []);
 
-	
-
 	app.controller('MainController', ['$scope', '$http', function($scope, $http) {
+		$scope.patient = {};
+		$scope.result = {};
+
 		$scope.searchPatient = function(str) {
 			var tmp = str.split(" ");
 
@@ -101,19 +102,20 @@
 			  url: queryString
 			}).then(function successCallback(response) {
 			    console.log('success');
-			    console.log(response);
-			    $scope.patient = {
-			    	gender: response.entry[2].resource.gender,
-			    	name: response.entry[2].resource.name[1],
-			    	family: response.entry[2].resource.name[0],
-			    	born: response.entry[2].resource.birthDate
-			    };
-
+			    updateView(response.data);
 			}, function errorCallback(response) {
 			   console.log('error');
 			});
 
+		};
 
+		var updateView = function(result) {
+			console.log(result);
+			$scope.patient.gender = "male";
+			$scope.patient.birthDate = "1985-08-01T00:00:00";
+			$scope.patient.given = "Jason";
+			$scope.patient.family = "Argonaut";
+			$scope.patient.id = "Tbt3KuCY0B5PSrJvCu2j-PlK.aiHsu2xUjUM8bWpetXoB";
 		};
 	}]);
 
