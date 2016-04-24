@@ -22,14 +22,52 @@
         success: function(data){
             console.log(data);
             for(var i=0; i < data.entry.length; i++) {
+                var rating;
 
-                var rating = '<fieldset class="rating">'+
-                        '<input type="radio" checked id="star5'+i+'" name="rating" value="5" /><label for="star5'+i+'" title="Rocks!">5 stars</label>'+
-                        '<input type="radio" id="star4'+i+'" name="rating" value="4" /><label for="star4'+i+'" title="Pretty good">4 stars</label>'+
-                        '<input type="radio" id="star3'+i+'" name="rating" value="3" /><label for="star3'+i+'" title="Meh">3 stars</label>'+
-                        '<input type="radio" id="star2'+i+'" name="rating" value="2" /><label for="star2'+i+'" title="Kind a bad">2 stars</label>'+
-                        '<input type="radio" id="star1'+i+'" name="rating" value="1" /><label for="star1'+i+'" title="Sucks big time">1 stars</label>'+
+                if(i == 0) {
+                rating = '<fieldset class="rating'+i+'">'+
+                        '<input type="radio" id="star5'+i+'" name="rating'+i+'" value="5" /><label for="star5'+i+'" title="Rocks!">5 stars</label>'+
+                        '<input type="radio" checked id="star4'+i+'" name="rating'+i+'" value="4" /><label for="star4'+i+'" title="Pretty good">4 stars</label>'+
+                        '<input type="radio" id="star3'+i+'" name="rating'+i+'" value="3" /><label for="star3'+i+'" title="Meh">3 stars</label>'+
+                        '<input type="radio" id="star2'+i+'" name="rating'+i+'" value="2" /><label for="star2'+i+'" title="Kind a bad">2 stars</label>'+
+                        '<input type="radio" id="star1'+i+'" name="rating'+i+'" value="1" /><label for="star1'+i+'" title="Sucks big time">1 stars</label>'+
                         '</fieldset>';
+                 } else if (i == 3){
+
+                    rating = '<fieldset class="rating'+i+'">'+
+                        '<input type="radio" checked id="star5'+i+'" name="rating'+i+'" value="5" /><label for="star5'+i+'" title="Rocks!">5 stars</label>'+
+                        '<input type="radio" id="star4'+i+'" name="rating'+i+'" value="4" /><label for="star4'+i+'" title="Pretty good">4 stars</label>'+
+                        '<input type="radio" id="star3'+i+'" name="rating'+i+'" value="3" /><label for="star3'+i+'" title="Meh">3 stars</label>'+
+                        '<input type="radio" id="star2'+i+'" name="rating'+i+'" value="2" /><label for="star2'+i+'" title="Kind a bad">2 stars</label>'+
+                        '<input type="radio" id="star1'+i+'" name="rating'+i+'" value="1" /><label for="star1'+i+'" title="Sucks big time">1 stars</label>'+
+                        '</fieldset>';
+                } else if (i == 5) {
+
+                    rating = '<fieldset class="rating' + i + '">' +
+                            '<input type="radio" id="star5' + i + '" name="rating' + i + '" value="5" /><label for="star5' + i + '" title="Rocks!">5 stars</label>' +
+                            '<input type="radio" id="star4' + i + '" name="rating' + i + '" value="4" /><label for="star4' + i + '" title="Pretty good">4 stars</label>' +
+                            '<input type="radio" checked id="star3' + i + '" name="rating' + i + '" value="3" /><label for="star3' + i + '" title="Meh">3 stars</label>' +
+                            '<input type="radio" id="star2' + i + '" name="rating' + i + '" value="2" /><label for="star2' + i + '" title="Kind a bad">2 stars</label>' +
+                            '<input type="radio" id="star1' + i + '" name="rating' + i + '" value="1" /><label for="star1' + i + '" title="Sucks big time">1 stars</label>' +
+                            '</fieldset>';
+                } else if (i == 2){
+
+                    rating = '<fieldset class="rating'+i+'">'+
+                        '<input type="radio" id="star5'+i+'" name="rating'+i+'" value="5" /><label for="star5'+i+'" title="Rocks!">5 stars</label>'+
+                        '<input type="radio" id="star4'+i+'" name="rating'+i+'" value="4" /><label for="star4'+i+'" title="Pretty good">4 stars</label>'+
+                        '<input type="radio" id="star3'+i+'" name="rating'+i+'" value="3" /><label for="star3'+i+'" title="Meh">3 stars</label>'+
+                        '<input type="radio" checked id="star2'+i+'" name="rating'+i+'" value="2" /><label for="star2'+i+'" title="Kind a bad">2 stars</label>'+
+                        '<input type="radio" id="star1'+i+'" name="rating'+i+'" value="1" /><label for="star1'+i+'" title="Sucks big time">1 stars</label>'+
+                        '</fieldset>';
+                } else {
+                    rating = '<fieldset class="rating' + i + '">' +
+                            '<input type="radio" id="star5' + i + '" name="rating' + i + '" value="5" /><label for="star5' + i + '" title="Rocks!">5 stars</label>' +
+                            '<input type="radio" id="star4' + i + '" name="rating' + i + '" value="4" /><label for="star4' + i + '" title="Pretty good">4 stars</label>' +
+                            '<input type="radio" id="star3' + i + '" name="rating' + i + '" value="3" /><label for="star3' + i + '" title="Meh">3 stars</label>' +
+                            '<input type="radio" checked id="star2' + i + '" name="rating' + i + '" value="2" /><label for="star2' + i + '" title="Kind a bad">2 stars</label>' +
+                            '<input type="radio" id="star1' + i + '" name="rating' + i + '" value="1" /><label for="star1' + i + '" title="Sucks big time">1 stars</label>' +
+                            '</fieldset>';
+                }
 
                 var template = '<tr><td class="genderColumn male">'+ data.entry[i].resource.code.text +'</td><td class="nameColumn">'+data.entry[i].resource.subject.display+'</td>' +
                         '<td class="familyColumn">'+rating+'</td><td class="dateColumn">'+data.entry[i].resource.effectiveDateTime+'</td>' +
