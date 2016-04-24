@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="patient">
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Search Patient</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="assets/css.css">
+	<link rel="stylesheet" href="assets/ionicons.min.css">
+</head>
+<body>
+<div class="container">
+<center class="fullWidth">
+<br/>
+	<div id="selectPatientHeader" class="row">
+		<div class="selectP">
+		<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+		Select Patient</div>
+	</div>
+	<br/>
+	<div class="box row">
+		<form class="form-inline">
+		<div class="form-group">
+			<label class="sr-only" for="exampleInputAmount">Patient search</label>
+		    <div class="input-group">
+		    	<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
+		      	<input type="text" class="form-control" id="exampleInputAmount" placeholder="Search Patient">
+		    </div>
+		</div>
+		</form>
+		<br/>
+		<div id ="resultsId" class="result" ng-controller="resultsCtrl">
+			<table class="">
+				<thead>
+				<tr>
+				    <th class="checkColumnHeader"> </th>
+					<th class="genderColumnHeader">Gender</th>
+					<th class="nameColumnHeader">Name</th>
+					<th class="familyColumnHeader">Family Name</th>
+					<th class="bornColumnHeader">Born</th>
+					</tr>
+				</thead>
+				<tbody class="fullwidth">
+					<tr>
+					    <td class="checkColumn"><input type="checkbox"></td>
+						<td class="genderColumn male">M</td>
+						<td class="nameColumn">John Njorku</td>
+						<td class="familyColumn">Ndibom</td>
+						<td class="bornColumn">31 Feb 2014</td>
+					</tr>
+					<tr>
+					    <td class="checkColumn"><input type="checkbox"></td>
+						<td class="genderColumn female">F</td>
+						<td class="nameColumn">John</td>
+						<td class="familyColumn">Family</td>
+						<td class="bornColumn">etc</td>
+					</tr>
+					<tr>
+					    <td class="checkColumn"><input type="checkbox"></td>
+						<td class="genderColumn female">F</td>
+						<td class="nameColumn">John</td>
+						<td class="familyColumn">Family</td>
+						<td class="bornColumn">etc</td>
+					</tr>
+				
+					
+				</tbody>
+			</table>
+		
+		<br/><span class="resultInfo">showing 25 patients of 260</span>
+		<br/><br/>
+		<div id="paginationPanel">
+		<span class="prevNnext">Prev</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="pagesLabel">Pages: &nbsp;</span>
+		<span class="pageNumber"> 1&nbsp;&nbsp;</span>
+		<span class="pageNumber currentPage"> 2&nbsp;&nbsp;</span>
+		<span class="pageNumber"> 3&nbsp;&nbsp;</span>
+		<span> ...</span>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		<span class="prevNnext">Next</span>
+	</div><br/>
+	</div>
+	</center>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="assets/ionic.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<!-- Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="js/angular-ui-router.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/app1.js"></script>
+</body>
+</html>
