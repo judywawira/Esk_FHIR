@@ -25,7 +25,7 @@
 			<label class="sr-only" for="exampleInputAmount">Patient search</label>
 		    <div class="input-group">
 		    	<div class="input-group-addon"><span class="glyphicon glyphicon-search"></span></div>
-		      	<input type="text" class="form-control" id="exampleInputAmount" ng-model="names" placeholder="Search Patient">
+		      	<input type="text" class="form-control" id="exampleInputAmount" ng-model="names" ng-init="names=' '"placeholder="Search Patient">
 		    </div>
 		    <span class="btn btn-default" ng-click="searchPatient(names)">Search</span>
 		</div>
@@ -48,7 +48,7 @@
 						<td class="genderColumn male">{{patient.gender}}</td>
 						<td class="nameColumn">{{patient.name}}</td>
 						<td class="familyColumn">{{patient.family}}</td>
-						<td class="bornColumn">{{patient.born | date}}</td>
+						<td class="bornColumn">{{patient.birthDate | date}}</td>
 					</tr>
 				</tbody>
 			</table>
@@ -84,13 +84,6 @@
 	
 
 	app.controller('MainController', ['$scope', '$http', function($scope, $http) {
-		$scope.patient = {
-			gender: "M",
-			name: "james",
-			family: "peterson",
-			born: 1991
-		};
-
 		$scope.searchPatient = function(str) {
 			var tmp = str.split(" ");
 
@@ -99,7 +92,28 @@
 
 			var queryString = " https://open-ic.epic.com/FHIR/api/FHIR/DSTU2/Patient?" + "given=" + given + "&family=" + family;
 
-			console.log(queryString); 
+			console.log(queryString);
+
+
+			// Simple GET request example:
+			$http({
+			  method: 'GET',
+			  url: queryString
+			}).then(function successCallback(response) {
+			    console.log('success');
+			    console.log(response);
+			    $scope.patient = {
+			    	gender: response.entry[2].resource.gender,
+			    	name: response.entry[2].resource.name[1],
+			    	family: response.entry[2].resource.name[0],
+			    	born: response.entry[2].resource.birthDate
+			    };
+
+			}, function errorCallback(response) {
+			   console.log('error');
+			});
+
+
 		};
 	}]);
 
